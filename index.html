@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritma Dan Pemograman</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input, button, select {
+            width: calc(100% - 20px);
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button.off {
+            background-color: #f44336;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .fan-container {
+            display: inline-block;
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+        }
+        .fan {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid #333;
+            position: absolute;
+            animation: none;
+            transform-origin: center;
+        }
+        .blade {
+            width: 50%;
+            height: 10%;
+            background: #4CAF50;
+            position: absolute;
+            top: 45%;
+            left: 25%;
+            transform-origin: left center;
+        }
+        .blade:nth-child(2) {
+            transform: rotate(120deg);
+        }
+        .blade:nth-child(3) {
+            transform: rotate(240deg);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Portofolio */
+        .portfolio {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .portfolio img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #4CAF50;
+        }
+        .portfolio h3 {
+            margin: 10px 0 5px;
+        }
+        .portfolio p {
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h2>PEMOGRAMAN</h2>
+
+    <!-- Portofolio -->
+    <div class="portfolio">
+        <img src="img1.jpg" alt="Foto Profil">
+        <h3>Amr Abdul Qudus</h3>
+        <p>
+           Mahasiswa Stikom Muhammadiyah Batam
+          Semester 1 Prodi Teknik Informatika NIM : 24010004
+        </p>
+    </div>
+
+    <!-- Luas Segitiga -->
+    <div class="container">
+        <h3>Hitung Luas Segitiga</h3>
+        <label for="base">Alas (cm):</label>
+        <input type="number" id="base" placeholder="Masukkan alas">
+        <label for="height">Tinggi (cm):</label>
+        <input type="number" id="height" placeholder="Masukkan tinggi">
+        <button onclick="calculateTriangle()">Hitung</button>
+        <div class="result" id="triangleResult"></div>
+    </div>
+
+    <!-- Persegi Panjang -->
+    <div class="container">
+        <h3>Hitung Persegi Panjang</h3>
+        <label for="length">Panjang (cm):</label>
+        <input type="number" id="length" placeholder="Masukkan panjang">
+        <label for="width">Lebar (cm):</label>
+        <input type="number" id="width" placeholder="Masukkan lebar">
+        <button onclick="calculateRectangle()">Hitung</button>
+        <div class="result" id="rectangleResult"></div>
+    </div>
+
+    <!-- Konversi Suhu -->
+    <div class="container">
+        <h3>Konversi Suhu</h3>
+        <label for="temperature">Suhu:</label>
+        <input type="number" id="temperature" placeholder="Masukkan suhu">
+        <label for="conversionType">Pilih Konversi:</label>
+        <select id="conversionType">
+            <option value="CtoF">Celsius ke Fahrenheit</option>
+            <option value="FtoC">Fahrenheit ke Celsius</option>
+        </select>
+        <button onclick="convertTemperature()">Konversi</button>
+        <div class="result" id="temperatureResult"></div>
+    </div>
+
+    <!-- Kipas -->
+    <div class="container">
+        <h3>Kipas On/Off</h3>
+        <div class="fan-container">
+            <div class="fan" id="fan">
+                <div class="blade"></div>
+                <div class="blade"></div>
+                <div class="blade"></div>
+            </div>
+        </div>
+        <button onclick="startFan()">On</button>
+        <button class="off" onclick="stopFan()">Off</button>
+    </div>
+
+    <script>
+        // Hitung Luas Segitiga
+        function calculateTriangle() {
+            const base = parseFloat(document.getElementById("base").value);
+            const height = parseFloat(document.getElementById("height").value);
+            if (base && height) {
+                const result = 0.5 * base * height;
+                document.getElementById("triangleResult").innerText = `Luas Segitiga: ${result.toFixed(2)} cm²`;
+            } else {
+                document.getElementById("triangleResult").innerText = "Masukkan nilai yang valid.";
+            }
+        }
+
+        // Hitung Luas dan Keliling Persegi Panjang
+        function calculateRectangle() {
+            const length = parseFloat(document.getElementById("length").value);
+            const width = parseFloat(document.getElementById("width").value);
+            if (length && width) {
+                const area = length * width;
+                const perimeter = 2 * (length + width);
+                document.getElementById("rectangleResult").innerText = 
+                    `Luas: ${area.toFixed(2)} cm², Keliling: ${perimeter.toFixed(2)} cm`;
+            } else {
+                document.getElementById("rectangleResult").innerText = "Masukkan nilai yang valid.";
+            }
+        }
+
+        // Konversi Suhu
+        function convertTemperature() {
+            const temperature = parseFloat(document.getElementById("temperature").value);
+            const conversionType = document.getElementById("conversionType").value;
+            if (temperature || temperature === 0) {
+                let result;
+                if (conversionType === "CtoF") {
+                    result = (temperature * 9 / 5) + 32;
+                    document.getElementById("temperatureResult").innerText = 
+                        `${temperature}°C = ${result.toFixed(2)}°F`;
+                } else if (conversionType === "FtoC") {
+                    result = (temperature - 32) * 5 / 9;
+                    document.getElementById("temperatureResult").innerText = 
+                        `${temperature}°F = ${result.toFixed(2)}°C`;
+                }
+            } else {
+                document.getElementById("temperatureResult").innerText = "Masukkan nilai suhu yang valid.";
+            }
+        }
+
+        // Kipas On/Off
+        const fan = document.getElementById("fan");
+        function startFan() {
+            fan.style.animation = "spin 1s linear infinite";
+        }
+        function stopFan() {
+            fan.style.animation = "none";
+        }
+    </script>
+</body>
+</html>
